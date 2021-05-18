@@ -218,9 +218,9 @@ const getCreators = readmeData => {
     .then (data => {
         readmeData.projectData.assetData.push(data);
         if(data.confirmAdditional){
-            return getCreators(projectData);
+            return getCreators(readmeData);
         } else {
-            return getAssets(projectData);
+            return getAssets(readmeData);
         }
     });
 };
@@ -255,7 +255,7 @@ const getTutorial = readmeData => {
     .then (data => {
         readmeData.projectData.tutorials.push(data);
         if(data.tutorials){
-            return tutorials(readmeData);
+            return getTutorial(readmeData);
         }else{
             return readmeData;
         }
