@@ -36,7 +36,7 @@ const promptQuestions = () => {
             type: 'checkbox',
             name: 'tableCheck',
             message: 'What sections would you like to add?',
-            choices: ['Installation', 'Usage', 'License', 'Contributing', 'Test', 'Questions'],
+            choices: ['Installation', 'Usage', 'License', 'Contributing', 'Tests', 'Questions'],
         },
         {
             type: 'input',
@@ -92,7 +92,7 @@ const promptQuestions = () => {
                     return false;
                 }
             },
-            when: ({ tableCheck }) => tableCheck.includes('Test') === true
+            when: ({ tableCheck }) => tableCheck.includes('Tests') === true
         }
     ])
     .then (data => {
@@ -180,8 +180,8 @@ const getContactInfo = readmeData => {
     });
 };
 
-function writeToFile(fileName, data) {
-    fs.writeFile('./dist/' + fileName, data, err => {
+const writeToFile = data => {
+    fs.writeFile('./dist/README.md', data, err => {
         if (err) {
             throw (err);
         }
@@ -190,8 +190,6 @@ function writeToFile(fileName, data) {
 
 promptQuestions()
     .then(readmeData => {
-        const markdown = generateMarkdown(readmeData);
-        //writeToFile('README.md', markdown);
-        //console.log(util.inspect(readmeData, false, null, true));
-        //writeFile(readmeData);
+        writeToFile(generateMarkdown(readmeData));
+        //return generateMarkdown(readmeData);
     });
