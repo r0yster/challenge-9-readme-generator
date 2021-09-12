@@ -1,4 +1,4 @@
-# challenge-9-readme-generator
+# readme-generator
 
 Description
 This readme generator will go through a list of questions, take your responses and generate a README.md file for you
